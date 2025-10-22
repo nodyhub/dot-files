@@ -1,7 +1,8 @@
-" Coloring - optimized for Light Tango Theme
+" filepath: /Users/jan/git/dot-files/.vimrc
+" Coloring - optimized for High Contrast Dark Tango Theme
 syntax enable
 syntax on
-set background=light
+set background=dark
 
 " Color scheme optimization for Tango
 if has('termguicolors')
@@ -15,10 +16,10 @@ catch /^Vim\%((\a\+)\)\=:E185/
   " Fallback to default with some Tango-friendly adjustments
 endtry
 
-" Highlight current line - adjusted for Light Tango theme
+" Highlight current line - adjusted for High Contrast Dark Tango theme
 set cursorline
-hi CursorLine ctermbg=255 guibg=#f2f2f2 cterm=NONE gui=NONE
-hi CursorLineNr ctermfg=32 guifg=#4271ae cterm=bold gui=bold
+hi CursorLine ctermbg=236 guibg=#2a2a2a cterm=NONE gui=NONE
+hi CursorLineNr ctermfg=226 guifg=#ffff00 cterm=bold gui=bold
 
 
 " Search Option
@@ -120,48 +121,48 @@ if !isdirectory(expand(&directory))
 endif
 " }}}
 
-" UTF-8 encodig wihthin files
+" UTF-8 encoding within files
 set encoding=utf-8
 set termencoding=utf-8
 
-" Custom syntax highlighting for Light Tango theme
-hi Normal ctermfg=238 ctermbg=NONE guifg=#444444 guibg=NONE
-hi Comment ctermfg=246 guifg=#909090
-hi Constant ctermfg=94 guifg=#8f5902
-hi Statement ctermfg=25 guifg=#204a87 gui=NONE
-hi Identifier ctermfg=31 guifg=#3465a4
-hi PreProc ctermfg=91 guifg=#75507b
-hi Type ctermfg=28 guifg=#4e9a06 gui=NONE
-hi Special ctermfg=160 guifg=#cc0000
-hi Search ctermbg=228 ctermfg=NONE guibg=#fcf7bd guifg=NONE
-hi MatchParen ctermbg=147 ctermfg=NONE guibg=#a4cdff guifg=NONE
-hi Visual ctermbg=153 guibg=#b3d6ff
-hi LineNr ctermfg=246 ctermbg=NONE guifg=#909090 guibg=NONE
-hi StatusLine ctermfg=231 ctermbg=25 guifg=#ffffff guibg=#204a87
-hi StatusLineNC ctermfg=250 ctermbg=240 guifg=#bcbcbc guibg=#585858
+" Custom syntax highlighting for High Contrast Dark Tango theme
+hi Normal ctermfg=255 ctermbg=NONE guifg=#ffffff guibg=NONE
+hi Comment ctermfg=240 guifg=#585858
+hi Constant ctermfg=226 guifg=#ffff00
+hi Statement ctermfg=51 guifg=#00ffff gui=NONE
+hi Identifier ctermfg=208 guifg=#ff8700
+hi PreProc ctermfg=201 guifg=#ff00ff
+hi Type ctermfg=46 guifg=#00ff00 gui=NONE
+hi Special ctermfg=196 guifg=#ff0000
+hi Search ctermbg=226 ctermfg=16 guibg=#ffff00 guifg=#000000
+hi MatchParen ctermbg=51 ctermfg=16 guibg=#00ffff guifg=#000000
+hi Visual ctermbg=51 ctermfg=16 guibg=#00ffff guifg=#000000
+hi LineNr ctermfg=240 ctermbg=NONE guifg=#585858 guibg=NONE
+hi StatusLine ctermfg=16 ctermbg=226 guifg=#000000 guibg=#ffff00
+hi StatusLineNC ctermfg=255 ctermbg=238 guifg=#ffffff guibg=#444444
 
-" Tabbing between multple windows
+" Tabbing between multiple windows
 map <F7> :bp<CR>
 map <F8> :bn<CR>
 
-" Light theme optimizations
-if &background == 'light'
-  " Fix Vim's popup menu colors to be more readable in light themes
-  hi Pmenu ctermbg=253 ctermfg=238 guibg=#dddddd guifg=#444444
-  hi PmenuSel ctermbg=25 ctermfg=231 guibg=#204a87 guifg=#ffffff
-  hi PmenuSbar ctermbg=250 guibg=#bcbcbc
+" Dark theme optimizations with high contrast
+if &background == 'dark'
+  " Fix Vim's popup menu colors to be more readable in dark themes
+  hi Pmenu ctermbg=238 ctermfg=255 guibg=#444444 guifg=#ffffff
+  hi PmenuSel ctermbg=51 ctermfg=16 guibg=#00ffff guifg=#000000
+  hi PmenuSbar ctermbg=238 guibg=#444444
   hi PmenuThumb ctermbg=240 guibg=#585858
   
-  " Fix diff colors for light theme
-  hi DiffAdd ctermbg=194 guibg=#d7ffd7
-  hi DiffChange ctermbg=223 guibg=#ffd7af
-  hi DiffDelete ctermbg=224 ctermfg=224 guibg=#ffd7d7 guifg=#ffd7d7
-  hi DiffText ctermbg=222 guibg=#ffd787
+  " Fix diff colors for dark theme with high contrast
+  hi DiffAdd ctermbg=22 ctermfg=46 guibg=#005f00 guifg=#00ff00
+  hi DiffChange ctermbg=58 ctermfg=226 guibg=#5f5f00 guifg=#ffff00
+  hi DiffDelete ctermbg=52 ctermfg=196 guibg=#5f0000 guifg=#ff0000
+  hi DiffText ctermbg=58 ctermfg=226 guibg=#875f00 guifg=#ffff00
 endif
 
-" Recommended plugins for better Light Tango experience:
-" - PaperColor: colorscheme that works well with light backgrounds
-" - vim-gitgutter: for git indicators with light theme suitable colors
+" Recommended plugins for better Dark Tango experience:
+" - PaperColor: colorscheme that works well with dark backgrounds
+" - vim-gitgutter: for git indicators with dark theme suitable colors
 " - vim-airline: status line with Tango-compatible themes
 " Install with:
 " mkdir -p ~/.vim/pack/plugins/start
@@ -176,4 +177,3 @@ endif
 
 " Note: When mouse=, these settings below have no effect
 " but are kept for reference/documentation
-

@@ -1,24 +1,22 @@
-# Tango Light color theme for the color GNU ls utility.
+# Tango Dark color theme for the color GNU ls utility.
 # Designed for dircolors (GNU coreutils) 5.97
 #
-# This theme is optimized for the Tango Light terminal color scheme.
-# It provides good readability and visual distinction between different
-# file types while maintaining the clean, professional look of Tango Light.
+# This theme is optimized for the Tango Dark terminal color scheme with HIGH CONTRAST.
+# It provides excellent readability and strong visual distinction between different
+# file types while maintaining the vibrant, professional look of Tango Dark.
 #
-# Color selection principles for Tango Light:
-# - The Tango palette provides distinct yet harmonious colors that work well
-#   on light backgrounds without straining the eyes
-# - Bold text is rendered in a stronger variant of the same color, enhancing
-#   readability while maintaining color consistency
+# Color selection principles for Tango Dark with High Contrast:
+# - The Tango palette provides distinct bright colors that pop against dark backgrounds
+# - Bold text is rendered in brighter variants for maximum contrast and visibility
 # - File categories follow these color associations:
-#   * Directories: Blue (#3465A4) - stands out but isn't harsh
-#   * Executables: Red (#CC0000) - draws attention to actionable items
-#   * Links: Purple (#75507B) - distinct from regular content
-#   * Text/source files: Green (#4E9A06) - easy on the eyes for frequent viewing
-#   * Multimedia: Orange/Brown (#CE5C00) - warm colors for media content
-#   * Archives: Magenta (#AD7FA8) - distinct color for compressed content
-# - Colors are selected to maintain good contrast on light backgrounds
-# - Unimportant files use muted colors that blend slightly with the background
+#   * Directories: Bright Cyan (#00FFFF) - highly visible and distinct
+#   * Executables: Bright Red (#FF0000) - draws immediate attention to actionable items
+#   * Links: Bright Magenta (#FF00FF) - stands out clearly from regular content
+#   * Text/source files: Bright Green (#00FF00) - excellent contrast for frequent viewing
+#   * Multimedia: Bright Yellow (#FFFF00) - warm, high-visibility colors for media content
+#   * Archives: Bright Magenta (#FF00FF) - distinct color for compressed content
+# - Colors are selected to maximize contrast against dark backgrounds
+# - Unimportant files use medium colors that remain visible on dark backgrounds
 
 
 # Insatllation instructions:
@@ -107,7 +105,7 @@ EIGHTBIT 1
 #   40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
 #
 # NOTES:
-# - Color combinations optimized for Tango Light theme
+# - Color combinations optimized for Tango Dark theme with HIGH CONTRAST
 # - Tango palette reference: https://en.wikipedia.org/wiki/Tango_Desktop_Project
 #
 #   ANSI Color code   Tango Color Name   Hex       Usage in this theme
@@ -115,18 +113,18 @@ EIGHTBIT 1
 #   00    none                                     NORMAL, FILE
 #   30    black       Aluminum 6         #2E3436   Reserved
 #   01;30 bright black Aluminum 5        #555753   Reserved
-#   31    red         Scarlet Red 3      #CC0000   Documents
-#   01;31 bright red  Scarlet Red 2      #EF2929   EXEC
-#   32    green       Chameleon 3        #4E9A06   Editable text/source
-#   01;32 bright green Chameleon 2       #73D216   Important text
-#   33    yellow      Butter 3           #C4A000   Multimedia
-#   01;33 bright yellow Butter 2         #EDD400   Important multimedia
-#   34    blue        Sky Blue 3         #3465A4   Custom files
-#   01;34 bright blue Sky Blue 2         #729FCF   DIR
-#   35    magenta     Plum 3             #75507B   LINK
-#   01;35 bright magenta Plum 2          #AD7FA8   Archives
-#   36    cyan        Sky Blue 1         #729FCF   Unimportant non-text
-#   01;36 bright cyan Sky Blue 1 alt     #34E2E2   Important non-text
+#   31    red         Scarlet Red 3      #CC0000   Documents (dark)
+#   01;31 bright red  Scarlet Red 1      #FF0000   EXEC (bright, high contrast)
+#   32    green       Chameleon 3        #4E9A06   Source (dark)
+#   01;32 bright green Chameleon 1       #00FF00   Important text (bright, high contrast)
+#   33    yellow      Butter 3           #C4A000   Multimedia (dark)
+#   01;33 bright yellow Butter 1         #FFFF00   Important multimedia (bright, high contrast)
+#   34    blue        Sky Blue 3         #3465A4   Custom files (dark)
+#   01;34 bright blue Sky Blue 1         #00FFFF   DIR (bright cyan, high contrast)
+#   35    magenta     Plum 3             #75507B   LINK (dark)
+#   01;35 bright magenta Plum 1          #FF00FF   LINK/Archives (bright, high contrast)
+#   36    cyan        Sky Blue 1         #729FCF   Unimportant non-text (medium)
+#   01;36 bright cyan Sky Blue 1 alt     #00FFFF   Important non-text (bright)
 #   37    white       Aluminum 2         #D3D7CF   Reserved
 #   01;37 bright white Aluminum 1        #EEEEEC   Reserved
 
@@ -137,28 +135,28 @@ EIGHTBIT 1
 NORMAL 00
 # normal file
 FILE 00
-# directory - Sky Blue
-DIR 01;34
-# symbolic link - Plum
-LINK 35
+# directory - Bright Cyan (high contrast)
+DIR 01;36
+# symbolic link - Bright Magenta (high contrast)
+LINK 01;35
 
 # pipe, socket, block device, character device (blue bg)
-FIFO 30;44
-SOCK 35;44
-DOOR 35;44 # Solaris 2.5 and later
-BLK  33;44
-CHR  37;44
+FIFO 01;33
+SOCK 01;35
+DOOR 01;35 # Solaris 2.5 and later
+BLK  01;33
+CHR  01;33
 
 
 #############################################################################
 ### By file attributes
 
-# Orphaned symlinks (white on red background)
-ORPHAN  37;41
-# ... and the files that orphaned symlinks point to (white on red background)
-MISSING 37;41
+# Orphaned symlinks (bright red on black - high contrast)
+ORPHAN  01;31
+# ... and the files that orphaned symlinks point to (bright red - high contrast)
+MISSING 01;31
 
-# files with execute permission - Scarlet Red (bright)
+# files with execute permission - Bright Red (high contrast)
 EXEC 01;31  # Unix
 .cmd 01;31  # Win
 .exe 01;31  # Win
@@ -176,113 +174,113 @@ EXEC 01;31  # Unix
 
 ### Text formats
 
-# Text that we can edit with a regular editor - Chameleon Green
-.txt 32
-.org 32
-.md 32
-.mkd 32
+# Text that we can edit with a regular editor - Bright Green (high contrast)
+.txt 01;32
+.org 01;32
+.md 01;32
+.mkd 01;32
 
-# Source text - Chameleon Green
-.h 32
-.c 32
-.C 32
-.cc 32
-.cpp 32
-.cxx 32
-.objc 32
-.sh 32
-.csh 32
-.zsh 32
-.el 32
-.vim 32
-.java 32
-.pl 32
-.pm 32
-.py 32
-.rb 32
-.hs 32
-.php 32
-.htm 32
-.html 32
-.shtml 32
-.erb 32
-.haml 32
-.xml 32
-.rdf 32
-.css 32
-.sass 32
-.scss 32
-.less 32
-.js 32
-.coffee 32
-.man 32
-.0 32
-.1 32
-.2 32
-.3 32
-.4 32
-.5 32
-.6 32
-.7 32
-.8 32
-.9 32
-.l 32
-.n 32
-.p 32
-.pod 32
-.tex 32
+# Source text - Bright Green (high contrast)
+.h 01;32
+.c 01;32
+.C 01;32
+.cc 01;32
+.cpp 01;32
+.cxx 01;32
+.objc 01;32
+.sh 01;32
+.csh 01;32
+.zsh 01;32
+.el 01;32
+.vim 01;32
+.java 01;32
+.pl 01;32
+.pm 01;32
+.py 01;32
+.rb 01;32
+.hs 01;32
+.php 01;32
+.htm 01;32
+.html 01;32
+.shtml 01;32
+.erb 01;32
+.haml 01;32
+.xml 01;32
+.rdf 01;32
+.css 01;32
+.sass 01;32
+.scss 01;32
+.less 01;32
+.js 01;32
+.coffee 01;32
+.man 01;32
+.0 01;32
+.1 01;32
+.2 01;32
+.3 01;32
+.4 01;32
+.5 01;32
+.6 01;32
+.7 01;32
+.8 01;32
+.9 01;32
+.l 01;32
+.n 01;32
+.p 01;32
+.pod 01;32
+.tex 01;32
 
 ### Multimedia formats
 
-# Image - Butter/Orange
-.bmp 33
-.cgm 33
-.dl 33
-.dvi 33
-.emf 33
-.eps 33
-.gif 33
-.jpeg 33
-.jpg 33
-.JPG 33
-.mng 33
-.pbm 33
-.pcx 33
-.pdf 33
-.pgm 33
-.png 33
-.ppm 33
-.pps 33
-.ppsx 33
-.ps 33
-.svg 33
-.svgz 33
-.tga 33
-.tif 33
-.tiff 33
-.xbm 33
-.xcf 33
-.xpm 33
-.xwd 33
-.xwd 33
-.yuv 33
+# Image - Bright Yellow (high contrast)
+.bmp 01;33
+.cgm 01;33
+.dl 01;33
+.dvi 01;33
+.emf 01;33
+.eps 01;33
+.gif 01;33
+.jpeg 01;33
+.jpg 01;33
+.JPG 01;33
+.mng 01;33
+.pbm 01;33
+.pcx 01;33
+.pdf 01;33
+.pgm 01;33
+.png 01;33
+.ppm 01;33
+.pps 01;33
+.ppsx 01;33
+.ps 01;33
+.svg 01;33
+.svgz 01;33
+.tga 01;33
+.tif 01;33
+.tiff 01;33
+.xbm 01;33
+.xcf 01;33
+.xpm 01;33
+.xwd 01;33
+.xwd 01;33
+.yuv 01;33
 
-# Audio - Butter/Orange
-.aac 33
-.au  33
-.flac 33
-.mid 33
-.midi 33
-.mka 33
-.mp3 33
-.mpa 33
-.mpeg 33
-.mpg 33
-.ogg  33
-.ra 33
-.wav 33
+# Audio - Bright Yellow (high contrast)
+.aac 01;33
+.au  01;33
+.flac 01;33
+.mid 01;33
+.midi 01;33
+.mka 01;33
+.mp3 01;33
+.mpa 01;33
+.mpeg 01;33
+.mpg 01;33
+.ogg  01;33
+.ra 01;33
+.wav 01;33
 
-# Video - Butter/Orange (bold)
+# Video - Bright Yellow (high contrast, extra bold)
 .anx 01;33
 .asf 01;33
 .avi 01;33
@@ -312,20 +310,20 @@ EXEC 01;31  # Unix
 
 ### Misc
 
-# Binary document formats and multimedia source - Scarlet Red
-.doc 31
-.docx 31
-.rtf 31
-.dot 31
-.dotx 31
-.xls 31
-.xlsx 31
-.ppt 31
-.pptx 31
-.fla 31
-.psd 31
+# Binary document formats and multimedia source - Bright Red (high contrast)
+.doc 01;31
+.docx 01;31
+.rtf 01;31
+.dot 01;31
+.dotx 01;31
+.xls 01;31
+.xlsx 01;31
+.ppt 01;31
+.pptx 01;31
+.fla 01;31
+.psd 01;31
 
-# Archives, compressed - Plum/Magenta (bright)
+# Archives, compressed - Bright Magenta (high contrast)
 .7z   01;35
 .apk  01;35
 .arj  01;35
@@ -375,14 +373,14 @@ EXEC 01;31  # Unix
 #############################################################################
 # Your customizations
 
-# Unimportant text files - Aluminum (muted gray)
-# Using a subtle dark gray that blends with Tango Light theme
-.log 90
-# "*~" 90
-# "*#" 90
+# Unimportant text files - Bright Black/Gray (still visible on dark)
+# Using bright black for good contrast while indicating unimportance
+.log 01;30
+# "*~" 01;30
+# "*#" 01;30
 
-# Unimportant non-text files - Sky Blue (muted)
-# Subtle blue that's visible but not distracting on Tango Light theme
+# Unimportant non-text files - Medium Blue (visible but muted)
+# Medium brightness to indicate they're less important
 .bak 36
 .BAK 36
 .old 36
@@ -397,26 +395,12 @@ EXEC 01;31  # Unix
 .swp 36
 .swo 36
 # "*,v" 36
-#.bak 01;33
-#.BAK 01;33
-#.old 01;33
-#.OLD 01;33
-#.org_archive 01;33
-#.off 01;33
-#.OFF 01;33
-#.dist 01;33
-#.DIST 01;33
-#.orig 01;33
-#.ORIG 01;33
-#.swp 01;33
-#.swo 01;33
-#*,v 01;33
 
-# Security/encryption files - Sky Blue 3 (secure)
-# These are important security files so they get a distinct color
-.gpg 34
-.pgp 34
-.asc 34
-.3des 34
-.aes 34
-.enc 34
+# Security/encryption files - Bright Cyan (secure and visible)
+# High contrast to draw attention to security-critical files
+.gpg 01;36
+.pgp 01;36
+.asc 01;36
+.3des 01;36
+.aes 01;36
+.enc 01;36
