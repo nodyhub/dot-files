@@ -5,6 +5,12 @@ typeset -A key
 
 # Load key bindings
 bindkey "^R" history-incremental-search-backward
+
+# Load history search functions
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
 key[Home]=${terminfo[khome]}
 key[End]=${terminfo[kend]}
 key[Insert]=${terminfo[kich1]}
