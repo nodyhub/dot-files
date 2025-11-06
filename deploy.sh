@@ -4,7 +4,7 @@ BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DOT_FILE=dfiles.tar.gz
 
 # Define the directory setup command
-REMOVE_DIRS_CMD="rm -rf ~/.zsh/{lib,plugins,custom}"
+REMOVE_DIRS_CMD="rm -rf ~/.zsh/{lib,plugins}"
 SETUP_DIRS_CMD="mkdir -p ~/.zsh/{lib,plugins,custom} ~/.zsh/lib/{aliases,completion,core,exports,functions,git,history,keymap,prompt,tools}"
 
 # Create .hushlogin file to disable "Last login" message
