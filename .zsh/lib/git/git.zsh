@@ -131,30 +131,59 @@ function ghopen() {
 
 # Open GitHub PR in browser
 function ghpr() {
-   # Get PR ID
-   PR_ID=$(git ls-remote origin 'pull/*/head' | grep -F -f <(git rev-parse HEAD) | awk -F'/' '{print $3}' 2>&1)
-   if [[ -z "$PR_ID" ]]; then
-      echo "No PR found"
-      return 0
-   fi
-
   # Get remote url
   REMOTE_ORIGIN_URL=$(git config remote.origin.url | sed "s/\.git$//")
   case $REMOTE_ORIGIN_URL in
     *"@"*)
-      URL="https://github.com/$(echo -n $REMOTE_ORIGIN_URL | cut -d ":" -f 2 | cut -d "." -f 1)"
+      BASE_URL="https://github.com/$(echo -n $REMOTE_ORIGIN_URL | cut -d ":" -f 2 | cut -d "." -f 1)"
       ;;
     "")
       echo "Not in GitHub repo"
       return 0
       ;;
     *)
-      URL=$REMOTE_ORIGIN_URL
+      BASE_URL=$REMOTE_ORIGIN_URL
   esac
-  URL="$URL/pull/$PR_ID"
 
+  # Get PR ID
+  PR_ID=$(git ls-remote origin 'pull/*/head' | grep -F -f <(git rev-parse HEAD) | awk -F'/' '{print $3}' 2>&1)
+  
+  if [[ -z "$PR_ID" ]]; then
+    echo "No PR found for current commit"
+    
+    # Get current branch
+    CURRENT_BRANCH=$(git symbolic-ref --quiet --short HEAD 2>/dev/null)
+    
+    if [[ -z "$CURRENT_BRANCH" ]]; then
+      echo "Not on a branch, cannot create PR"
+      return 1
+    fi
+    
+    # Get default branch (usually main or master)
+    DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
+    
+    if [[ -z "$DEFAULT_BRANCH" ]]; then
+      # Fallback to common default branches
+      if git rev-parse --verify origin/main &>/dev/null; then
+        DEFAULT_BRANCH="main"
+      elif git rev-parse --verify origin/master &>/dev/null; then
+        DEFAULT_BRANCH="master"
+      else
+        DEFAULT_BRANCH="main"  # Ultimate fallback
+      fi
+    fi
+    
+    # Assemble URL for creating a new PR
+    URL="$BASE_URL/compare/$DEFAULT_BRANCH...$CURRENT_BRANCH?expand=1"
+    echo "Opening PR creation page: $URL"
+    open "$URL"
+    return 0
+  fi
+
+  # PR exists, open it
+  URL="$BASE_URL/pull/$PR_ID"
   echo "Opening $URL"
-  open $URL
+  open "$URL"
 }
 
 # Export GitHub token
