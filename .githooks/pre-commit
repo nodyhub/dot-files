@@ -1,16 +1,24 @@
 #!/usr/bin/env bash
 
-# Check if global hooks are disabled for this specific repository
+# Check if global hooks are disabled for this specific repository (e.g., your dotfiles)
 if [ "$(git config --local --get hooks.skipGlobal)" != "true" ]; then
   echo "🔍 Running global pre-commit checks..."
 
-  # 1. Check Go formatting
+  # 1. Check Go formatting (ONLY on staged .go files)
   if command -v gofmt &> /dev/null; then
-    unformatted=$(gofmt -l .)
-    if [ -n "$unformatted" ]; then
-      echo "🚨 ABORT: Files not formatted. Run 'gofmt -w .' and try again."
-      echo "$unformatted"
-      exit 1
+    # Get a list of staged .go files (Added, Copied, Modified)
+    staged_go_files=$(git diff --cached --name-only --diff-filter=ACM | grep '\.go$' || true)
+    
+    if [ -n "$staged_go_files" ]; then
+      unformatted=$(gofmt -l $staged_go_files)
+      if [ -n "$unformatted" ]; then
+        echo "🚨 ABORT: The following staged files are not formatted:"
+        echo "$unformatted"
+        echo "Run 'gofmt -w <file>' and try again."
+        exit 1
+      fi
+    else
+      echo "⏭️ Skipping 'gofmt' (no .go files staged)."
     fi
   fi
 
