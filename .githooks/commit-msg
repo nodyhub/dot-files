@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+commit_msg_file=$1
+commit_msg=$(cat "$commit_msg_file")
+
+# Skip checks for merge commits
+if [[ $commit_msg =~ ^Merge ]]; then exit 0; fi
+
+regex="^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-zA-Z0-9_-]+\))?!?: .+"
+
+if [[ ! $commit_msg =~ $regex ]]; then
+  echo ""
+  echo "🚨 ABORT: Your commit message does not meet the standard!"
+  echo -e "Your input: \033[31m$commit_msg\033[0m"
+  echo "Expected format: <type>(<scope>): <subject>"
+  echo "Allowed Types: feat, fix, chore, refactor, docs, test, perf"
+  exit 1
+fi
+
+# =========================================================
+# DISPATCHER FOR LOCAL REPO HOOKS
+# =========================================================
+HOOK_NAME=$(basename "$0")
+LOCAL_HOOK_CONFIG=$(git config --local --get hooks.localPath || true)
+
+if [ -n "$LOCAL_HOOK_CONFIG" ]; then
+  # If config points to a directory (e.g., .husky or .githooks)
+  if [ -d "$LOCAL_HOOK_CONFIG" ]; then
+    LOCAL_HOOK="$LOCAL_HOOK_CONFIG/$HOOK_NAME"
+    if [ -x "$LOCAL_HOOK" ] && [ ! -d "$LOCAL_HOOK" ]; then
+      echo "🔗 Running local repository hook ($LOCAL_HOOK)..."
+      exec "$LOCAL_HOOK" "$@"
+    fi
+  # If config points directly to a file (e.g., scripts/ci.sh)
+  elif [ -f "$LOCAL_HOOK_CONFIG" ] && [ -x "$LOCAL_HOOK_CONFIG" ]; then
+    echo "🔗 Running local repository hook file ($LOCAL_HOOK_CONFIG)..."
+    exec "$LOCAL_HOOK_CONFIG" "$@"
+  fi
+fi
+
+exit 0
